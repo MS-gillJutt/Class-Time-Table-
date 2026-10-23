@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ ClassTime Neumorphic Design System ============ */
+
+:root {
+  --bg: #e0e5ec;
+  --bg-deep: #d3d9e2;
+  --text: #3d4460;
+  --text-soft: #7a84a0;
+  --accent: #5b7cfa;
+  --accent-soft: #8fa6ff;
+  --amber: #f5a623;
+  --green: #34c77b;
+  --red: #f26d6d;
+  --card: #e0e5ec;
+  /* light neumorphic shadows */
+  --sh-out: 8px 8px 16px #b8bec9, -8px -8px 16px #ffffff;
+  --sh-out-sm: 4px 4px 10px #b8bec9, -4px -4px 10px #ffffff;
+  --sh-out-lg: 12px 12px 28px #b3b9c6, -12px -12px 28px #ffffff;
+  --sh-in: inset 5px 5px 12px #b8bec9, inset -5px -5px 12px #ffffff;
+  --sh-in-sm: inset 3px 3px 8px #b8bec9, inset -3px -3px 8px #ffffff;
+}
+
+.dark {
+  --bg: #17191f;
+  --bg-deep: #101218;
+  --text: #eef0f8;
+  --text-soft: #9aa3bd;
+  --accent: #7d9bff;
+  --accent-soft: #a9bcff;
+  --amber: #ffb648;
+  --green: #3ddc84;
+  --red: #ff7b7b;
+  --card: #1c1f27;
+  /* dark neumorphic shadows */
+  --sh-out: 8px 8px 18px #0b0d12, -8px -8px 18px #232733;
+  --sh-out-sm: 4px 4px 10px #0b0d12, -4px -4px 10px #232733;
+  --sh-out-lg: 12px 12px 30px #0a0c10, -12px -12px 30px #242936;
+  --sh-in: inset 5px 5px 12px #0b0d12, inset -5px -5px 12px #232733;
+  --sh-in-sm: inset 3px 3px 8px #0b0d12, inset -3px -3px 8px #232733;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.35s ease, color 0.35s ease;
+  overscroll-behavior-y: none;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/* ---------- neumorphic primitives ---------- */
+@layer components {
+  .neu {
+    background: var(--card);
+    box-shadow: var(--sh-out);
+    border-radius: 1.25rem;
+  }
+  .neu-sm {
+    background: var(--card);
+    box-shadow: var(--sh-out-sm);
+    border-radius: 1rem;
+  }
+  .neu-lg {
+    background: var(--card);
+    box-shadow: var(--sh-out-lg);
+    border-radius: 1.5rem;
+  }
+  .neu-in {
+    background: var(--bg);
+    box-shadow: var(--sh-in);
+    border-radius: 1.25rem;
+  }
+  .neu-in-sm {
+    background: var(--bg);
+    box-shadow: var(--sh-in-sm);
+    border-radius: 0.9rem;
+  }
+  .neu-btn {
+    background: var(--card);
+    box-shadow: var(--sh-out-sm);
+    border-radius: 1rem;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    user-select: none;
+    cursor: pointer;
+  }
+  .neu-btn:active {
+    box-shadow: var(--sh-in-sm);
+    transform: scale(0.98);
+  }
+  .neu-btn-active {
+    background: var(--bg);
+    box-shadow: var(--sh-in-sm);
+    border-radius: 1rem;
+    color: var(--accent);
+  }
+  .neu-circle {
+    background: var(--card);
+    box-shadow: var(--sh-out);
+    border-radius: 9999px;
+  }
+  .neu-input {
+    background: var(--bg);
+    box-shadow: var(--sh-in-sm);
+    border-radius: 0.9rem;
+    outline: none;
+    width: 100%;
+  }
+  .neu-input:focus {
+    box-shadow: var(--sh-in-sm), 0 0 0 2px var(--accent-soft);
+  }
+  .text-soft { color: var(--text-soft); }
+  .text-accent { color: var(--accent); }
+  .bg-app { background: var(--bg); }
+  .bg-deep { background: var(--bg-deep); }
+
+  .badge {
+    border-radius: 9999px;
+    padding: 0.25rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .badge-amber {
+    background: color-mix(in srgb, var(--amber) 18%, transparent);
+    color: var(--amber);
+    box-shadow: var(--sh-out-sm);
+  }
+  .badge-green {
+    background: color-mix(in srgb, var(--green) 16%, transparent);
+    color: var(--green);
+  }
+  .badge-accent {
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    color: var(--accent);
+  }
+
+  .glow-amber { box-shadow: var(--sh-out), 0 0 24px color-mix(in srgb, var(--amber) 35%, transparent); }
+  .glow-accent { box-shadow: var(--sh-out), 0 0 24px color-mix(in srgb, var(--accent) 35%, transparent); }
+
+  .page {
+    max-width: 28rem;
+    margin: 0 auto;
+    padding: 1.25rem 1.25rem 6.5rem;
+    min-height: 100dvh;
+  }
+
+  .bottom-nav {
+    position: fixed;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(26rem, calc(100% - 2rem));
+    z-index: 40;
+  }
+
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-deep);
+  }
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    animation: shimmer 1.4s infinite;
+  }
+  @keyframes shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+  .fade-in { animation: fadeIn 0.35s ease both; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
